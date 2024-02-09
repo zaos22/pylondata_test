@@ -223,16 +223,32 @@
             margin-bottom: 5rem;
         }
 
-        .mb-12 {
-            margin-bottom: 12.5rem;
+        .mb-10 {
+            margin-bottom: 10rem;
         }
 
-        .mb-50 {
+        .mb-15 {
+            margin-bottom: 15rem;
+        }
+
+        .mb-30 {
             margin-bottom: 30rem;
+        }
+
+        .mb-20 {
+            margin-bottom: 20rem;
         }
 
         .ms-2 {
             margin-left: 2rem;
+        }
+
+        .ms-5 {
+            margin-left: 5rem;
+        }
+
+        .me-2 {
+            margin-right: 2rem;
         }
 
         .me-5 {
@@ -337,10 +353,22 @@
                 margin-bottom: .5rem;
             }
         }
+
+        .image {
+            width: 70rem;
+            height: 30rem;
+        }
+
+        .div-size {
+            width: 85%;
+            margin: 0 auto;
+        }
     </style>
 @endsection
 
 @section('content')
+    <div class="mb-12">
+    </div>
     <x-header2 />
     <div class="mb-5">
     </div>
@@ -351,74 +379,42 @@
                     <p></p>
                 </div>
                 <div class="background-color3">
-                    <h1 class="text-center text-blue text-up">Análisis de consumo</h1>
+                    <h1 class="text-center text-blue text-up">Especificaciones Técnicas</h1>
                 </div>
             </div>
             <main class="container-content">
                 <div class="mb-12">
                 </div>
-                <div class="me-5 table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="background-color p2 ps-3 text-start text-blue title-table" colspan="2">
-                                    Resumen de costes
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="background-color text-grey body-size">
-                                <td class="ps-5 p1-5">Coste por energía consumida</td>
-                                <td class="p1-5 bold pe-5 text-end">
-                                    {{ number_format(substr($data['bill_summary']['energy_consumption_cost'], 0, 5), 2) }}€
-                                </td>
-                            </tr>
-                            <tr class="background-color text-grey body-size">
-                                <td class="ps-5 p1-5">Coste por potencia contratada</td>
-                                <td class="p1-5 bold pe-5 text-end">
-                                    {{ number_format(substr($data['bill_summary']['contracted_power_cost'], 0, 5), 2) }}€
-                                </td>
-                            </tr>
-                            <tr class="background-color text-grey body-size">
-                                <td class="ps-5 p1-5">Impuesto eléctrico 0.5%</td>
-                                <td class="p1-5 bold pe-5 text-end">
-                                    {{ number_format(substr($data['bill_summary']['iee_cost'], 0, 5), 2) }}€</td>
-                            </tr>
-                            <tr class="background-color text-grey body-size">
-                                <td class="ps-5 p1-5">IVA 10% (sobre 997,18 €)</td>
-                                <td class="p1-5 bold pe-5 text-end">
-                                    {{ number_format(substr($data['bill_summary']['iva_cost'], 0, 5), 2) }}€
-                                </td>
-                            </tr>
-                        </tbody>
-                        <thead>
-                            <tr>
-                                <th class="background-color p3">
-
-                                </th>
-                                <th class="background-color p4">
-
-                                </th>
-                            </tr>
-                        </thead>
-                        <thead>
-                            <tr>
-                                <th class="background-color2 p2 ps-3 text-start text-white title-table">
-                                    Coste total anual: </br>
-                                    (con IVA)
-                                </th>
-                                <th class="background-color2 p2 text-end pe-5 text-white title-table">
-                                    {{ number_format(substr($data['bill_summary']['total_annual_cost_with_iva'], 0, 5), 2) }}€
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
+                <div class="background-color4 div-size">
+                    <div class="text-center">
+                        <img class="image" src="{{ url('storage/casa-paneles-solares.jpg') }}" alt="">
+                    </div>
+                    <div class="flex-justify-center p2">
+                        <div class="me-5">
+                            <p class="text-blue bold">Ubicación</p>
+                            <p></p>
+                            <p class="text-blue bold">Módulos</p>
+                            <p class="body-size">{{$data['technical_data']['modules'][0]['quantity']}} x {{$data['technical_data']['modules'][0]['power']}}Wp - Panel {{$data['technical_data']['modules'][0]['panels_per_string']}}</p>
+                            <p class="text-blue bold">Inversores</p>
+                            <p class="body-size">{{$data['technical_data']['inverters'][0]['quantity']}} x {{$data['technical_data']['inverters'][0]['brand']}} {{number_format(substr($data['technical_data']['batteries'][0]['charge_power'], 0, 1))}}kW</p>
+                            <p class="text-blue bold">Superficie y tipo de instalación</p>
+                            <p class="body-size">{{number_format(substr($data['installation_details']['m2'], 0, 5))}} m2 - {{$data['technical_data']['structure-type'][0]['model']}}</p>
+                        </div>
+                        <div class="ms-5">
+                            <p class="text-blue bold">Yield</p>
+                            <p class="body-size">{{number_format(substr($data['installation_details']['yield'], 0, 5))}} kWh/kWp</p>
+                            <p class="text-blue bold">Orientación e <br />
+                                inclinación</p>
+                            <p class="body-size">desviación sur {{$data['installation_details']['orientation']}}º e <br />
+                                inclinación {{$data['installation_details']['inclination']}}º</p>
+                        </div>
+                    </div>
                 </div>
             @else
                 <p>No se encontraron datos del JSON.</p>
         @endif
     </main>
-    <div class="mb-50">
+    <div class="mb-15">
 
     </div>
     <x-footer> @section('pag') 02 @endsection </x-footer>

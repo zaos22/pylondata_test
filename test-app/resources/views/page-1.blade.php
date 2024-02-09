@@ -227,7 +227,7 @@
             margin-bottom: 12.5rem;
         }
 
-        .mb-50 {
+        .mb-30 {
             margin-bottom: 30rem;
         }
 
@@ -444,7 +444,7 @@
                 <p>No se encontraron datos del JSON.</p>
         @endif
     </main>
-    <div class="mb-50">
+    <div class="mb-30">
 
     </div>
     <x-footer> @section('pag') 01 @endsection </x-footer>
