@@ -447,6 +447,6 @@
     <div class="mb-50">
 
     </div>
-    <x-footer />
+    <x-footer> @section('pag') 01 @endsection </x-footer>
     </main>
 @endsection

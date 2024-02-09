@@ -31,7 +31,7 @@
         }
     </style>
     @yield('styles')
-    <title>Test App - @yield('title')</title>
+    <title>Test App @yield('title')</title>
 </head>
 
 <body>

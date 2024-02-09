@@ -74,10 +74,6 @@
             padding-top: 5rem;
         }
 
-        .pt {
-            padding-top: 5rem;
-        }
-
         @media (min-width: 768px) {
             .page-1 {
                 width: 100%;
@@ -227,8 +223,12 @@
             margin-bottom: 5rem;
         }
 
-        .mb-10 {
-            margin-bottom: 10rem;
+        .mb-12 {
+            margin-bottom: 12.5rem;
+        }
+
+        .mb-50 {
+            margin-bottom: 30rem;
         }
 
         .ms-2 {
@@ -342,6 +342,8 @@
 
 @section('content')
     <x-header2 />
+    <div class="mb-5">
+    </div>
     <main class="page-1">
         @if (isset($data))
             <div class="between">
@@ -349,12 +351,11 @@
                     <p></p>
                 </div>
                 <div class="background-color3">
-                    <h1 class="text-center text-blue text-up">ESPECIFICACIONES TÉCNICAS</h1>
+                    <h1 class="text-center text-blue text-up">Análisis de consumo</h1>
                 </div>
             </div>
             <main class="container-content">
-                <div class="pt">
-
+                <div class="mb-12">
                 </div>
                 <div class="me-5 table-container">
                     <table>
@@ -417,9 +418,9 @@
                 <p>No se encontraron datos del JSON.</p>
         @endif
     </main>
-    <div class="mb-2">
+    <div class="mb-50">
 
     </div>
-    <x-footer />
+    <x-footer> @section('pag') 02 @endsection </x-footer>
     </main>
 @endsection
