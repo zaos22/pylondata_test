@@ -72,9 +72,6 @@ class JsonRenderingController extends Controller
 
             // Establecer las opciones de estilo del PDF
             $pdf->setPaper('A4', 'portrait');
-            $pdf->set_option('isPhpEnabled', true); // Habilitar el soporte PHP
-            $pdf->set_option('isHtml5ParserEnabled', true); // Habilitar el analizador HTML5
-            $pdf->set_option('isFontSubsettingEnabled', true); // Habilitar la subconjunción de fuentes
 
             // Renderizar el PDF
             $pdf->render();
