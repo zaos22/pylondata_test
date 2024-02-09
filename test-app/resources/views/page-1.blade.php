@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', '')
 @section('styles')
-    @parent <!-- Mantiene los estilos del layout principal -->
+    @parent
     <!-- Styles -->
     <style>
         html {
@@ -356,31 +356,11 @@
                 margin-bottom: .5rem;
             }
         }
-
-        .content-footer {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .footer_copyright {
-            text-align: center;
-            font-size: 1.8rem;
-            margin: 2rem 0 0;
-            margin-bottom: 1rem;
-        }
-
-        .text-size{
-            font-size: 2.5rem;
-        }
     </style>
 @endsection
 
 @section('content')
-    <header class="header">
-        <div class="container-content navigation-bar">
-            <h1 class="text-center title-text">PYLON</h1>
-        </div>
-    </header>
+    <x-header2 />
     <main class="page-1">
         @if (isset($data))
             <div class="between">
@@ -485,16 +465,6 @@
     <div class="mb-2">
 
     </div>
-    <footer class="container-content">
-        <div class="content-footer flex-justify-center">
-            <div>
-                <h1 class="text-center title-text text-blue">PYLON</h1>
-            </div>
-            <div>
-                <p class="text-center text-size text-green">01</p>
-            </div>
-            <p class="footer_copyright">&copy; PylonData Test</p>
-        </div>
-    </footer>
+    <x-footer />
     </main>
 @endsection

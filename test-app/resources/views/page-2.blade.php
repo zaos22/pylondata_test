@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', '')
 @section('styles')
-    @parent <!-- Mantiene los estilos del layout principal -->
+    @parent
     <!-- Styles -->
     <style>
         html {
@@ -356,31 +356,11 @@
                 margin-bottom: .5rem;
             }
         }
-
-        .content-footer {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .footer_copyright {
-            text-align: center;
-            font-size: 1.8rem;
-            margin: 2rem 0 0;
-            margin-bottom: 1rem;
-        }
-
-        .text-size{
-            font-size: 2.5rem;
-        }
     </style>
 @endsection
 
 @section('content')
-    <header class="header">
-        <div class="container-content navigation-bar">
-            <h1 class="text-center title-text">PYLON</h1>
-        </div>
-    </header>
+    <x-header2 />
     <main class="page-1">
         @if (isset($data))
             <div class="between">
@@ -395,63 +375,63 @@
                 <div class="pt">
 
                 </div>
-                    <div class="me-5 table-container">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="background-color p2 ps-3 text-start text-blue title-table" colspan="2">
-                                        Resumen de costes
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="background-color text-grey body-size">
-                                    <td class="ps-5 p1-5">Coste por energía consumida</td>
-                                    <td class="p1-5 bold pe-5 text-end">
-                                        {{ number_format(substr($data['bill_summary']['energy_consumption_cost'], 0, 5), 2) }}€
-                                    </td>
-                                </tr>
-                                <tr class="background-color text-grey body-size">
-                                    <td class="ps-5 p1-5">Coste por potencia contratada</td>
-                                    <td class="p1-5 bold pe-5 text-end">
-                                        {{ number_format(substr($data['bill_summary']['contracted_power_cost'], 0, 5), 2) }}€
-                                    </td>
-                                </tr>
-                                <tr class="background-color text-grey body-size">
-                                    <td class="ps-5 p1-5">Impuesto eléctrico 0.5%</td>
-                                    <td class="p1-5 bold pe-5 text-end">
-                                        {{ number_format(substr($data['bill_summary']['iee_cost'], 0, 5), 2) }}€</td>
-                                </tr>
-                                <tr class="background-color text-grey body-size">
-                                    <td class="ps-5 p1-5">IVA 10% (sobre 997,18 €)</td>
-                                    <td class="p1-5 bold pe-5 text-end">
-                                        {{ number_format(substr($data['bill_summary']['iva_cost'], 0, 5), 2) }}€
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <thead>
-                                <tr>
-                                    <th class="background-color p3">
+                <div class="me-5 table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="background-color p2 ps-3 text-start text-blue title-table" colspan="2">
+                                    Resumen de costes
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="background-color text-grey body-size">
+                                <td class="ps-5 p1-5">Coste por energía consumida</td>
+                                <td class="p1-5 bold pe-5 text-end">
+                                    {{ number_format(substr($data['bill_summary']['energy_consumption_cost'], 0, 5), 2) }}€
+                                </td>
+                            </tr>
+                            <tr class="background-color text-grey body-size">
+                                <td class="ps-5 p1-5">Coste por potencia contratada</td>
+                                <td class="p1-5 bold pe-5 text-end">
+                                    {{ number_format(substr($data['bill_summary']['contracted_power_cost'], 0, 5), 2) }}€
+                                </td>
+                            </tr>
+                            <tr class="background-color text-grey body-size">
+                                <td class="ps-5 p1-5">Impuesto eléctrico 0.5%</td>
+                                <td class="p1-5 bold pe-5 text-end">
+                                    {{ number_format(substr($data['bill_summary']['iee_cost'], 0, 5), 2) }}€</td>
+                            </tr>
+                            <tr class="background-color text-grey body-size">
+                                <td class="ps-5 p1-5">IVA 10% (sobre 997,18 €)</td>
+                                <td class="p1-5 bold pe-5 text-end">
+                                    {{ number_format(substr($data['bill_summary']['iva_cost'], 0, 5), 2) }}€
+                                </td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <th class="background-color p3">
 
-                                    </th>
-                                    <th class="background-color p4">
+                                </th>
+                                <th class="background-color p4">
 
-                                    </th>
-                                </tr>
-                            </thead>
-                            <thead>
-                                <tr>
-                                    <th class="background-color2 p2 ps-3 text-start text-white title-table">
-                                        Coste total anual: </br>
-                                        (con IVA)
-                                    </th>
-                                    <th class="background-color2 p2 text-end pe-5 text-white title-table">
-                                        {{ number_format(substr($data['bill_summary']['total_annual_cost_with_iva'], 0, 5), 2) }}€
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th class="background-color2 p2 ps-3 text-start text-white title-table">
+                                    Coste total anual: </br>
+                                    (con IVA)
+                                </th>
+                                <th class="background-color2 p2 text-end pe-5 text-white title-table">
+                                    {{ number_format(substr($data['bill_summary']['total_annual_cost_with_iva'], 0, 5), 2) }}€
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             @else
                 <p>No se encontraron datos del JSON.</p>
         @endif
@@ -459,16 +439,6 @@
     <div class="mb-2">
 
     </div>
-    <footer class="container-content">
-        <div class="content-footer flex-justify-center">
-            <div>
-                <h1 class="text-center title-text text-blue">PYLON</h1>
-            </div>
-            <div>
-                <p class="text-center text-size text-green">01</p>
-            </div>
-            <p class="footer_copyright">&copy; PylonData Test</p>
-        </div>
-    </footer>
+    <x-footer />
     </main>
 @endsection
