@@ -142,7 +142,8 @@
             flex: 1;
             border: 1px solid #000;
             /* Añade bordes para visualizar las cajas */
-            margin-right: 10px;
+            margin-left: 1rem;
+            margin-right: 1rem;
             /* Espacio entre las cajas */
         }
 
@@ -238,8 +239,6 @@
                 flex: 1;
                 border: 1px solid #000;
                 /* Añade bordes para visualizar las cajas */
-                margin-right: 10px;
-                /* Espacio entre las cajas */
             }
 
             .box {
@@ -255,6 +254,10 @@
             .no-print {
                 display: none;
             }
+        }
+
+        .mb-4 {
+            margin-bottom: 4rem;
         }
     </style>
 @endsection
@@ -310,6 +313,8 @@
                 </div>
             </div>
         </div>
+        <div class="mb-4">
 
+        </div>
     </main>
 @endsection

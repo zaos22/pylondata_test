@@ -64,7 +64,7 @@
         .header {
             background-color: #2571ff;
             box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
-            padding: .5rem 0;
+            padding: .3rem 0;
             font-family: 'Protest Guerrilla', sans-serif;
         }
 
@@ -200,10 +200,6 @@
             font-size: 2.8rem;
         }
 
-        .between {
-            display: flex;
-        }
-
         .background {
             width: 5%;
             height: auto;
@@ -234,16 +230,32 @@
             padding: 3rem;
         }
 
+        .p4 {
+            padding: 4rem;
+        }
+
         .p5 {
             padding: 5rem;
         }
 
-        .ms-1 {
-            margin-left: 1rem;
+        .mb-2 {
+            margin-bottom: 2rem;
         }
 
-        .me-1 {
-            margin-right: 1rem;
+        .mb-5 {
+            margin-bottom: 5rem;
+        }
+
+        .mb-10 {
+            margin-bottom: 10rem;
+        }
+
+        .ms-2 {
+            margin-left: 2rem;
+        }
+
+        .me-5 {
+            margin-right: 5rem;
         }
 
         .pb-2 {
@@ -278,8 +290,19 @@
             overflow: hidden;
         }
 
+        .border-radius {
+            width: 40%;
+            height: auto;
+            border-top-right-radius: 10rem;
+        }
+
+        .between {
+            display: flex;
+            justify-content: space-between;
+        }
+
         .title-table {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 900;
         }
 
@@ -287,14 +310,8 @@
             font-size: 1.4rem;
         }
 
-        .border-radius {
-            width: 40%;
-            height: auto;
-            border-top-right-radius: 10rem;
-        }
-
-
         table {
+            width: 100%;
             border-collapse: collapse;
             border-color: #52ffba;
             border-spacing: 0;
@@ -339,6 +356,22 @@
                 margin-bottom: .5rem;
             }
         }
+
+        .content-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer_copyright {
+            text-align: center;
+            font-size: 1.8rem;
+            margin: 2rem 0 0;
+            margin-bottom: 1rem;
+        }
+
+        .text-size{
+            font-size: 2.5rem;
+        }
     </style>
 @endsection
 
@@ -363,7 +396,7 @@
 
                 </div>
                 <div class="between">
-                    <div class="me-1 table-container">
+                    <div class="me-5 table-container">
                         <table>
                             <thead>
                                 <tr>
@@ -375,21 +408,38 @@
                             <tbody>
                                 <tr class="background-color text-grey body-size">
                                     <td class="ps-5 p1-5">Coste por energía consumida</td>
-                                    <td class="p1-5 bold pe-5 text-end">Dato 2</td>
+                                    <td class="p1-5 bold pe-5 text-end">
+                                        {{ number_format(substr($data['bill_summary']['energy_consumption_cost'], 0, 5), 2) }}€
+                                    </td>
                                 </tr>
                                 <tr class="background-color text-grey body-size">
                                     <td class="ps-5 p1-5">Coste por potencia contratada</td>
-                                    <td class="p1-5 bold pe-5 text-end">Dato 5</td>
+                                    <td class="p1-5 bold pe-5 text-end">
+                                        {{ number_format(substr($data['bill_summary']['contracted_power_cost'], 0, 5), 2) }}€
+                                    </td>
                                 </tr>
                                 <tr class="background-color text-grey body-size">
                                     <td class="ps-5 p1-5">Impuesto eléctrico 0.5%</td>
-                                    <td class="p1-5 bold pe-5 text-end">Dato 5</td>
+                                    <td class="p1-5 bold pe-5 text-end">
+                                        {{ number_format(substr($data['bill_summary']['iee_cost'], 0, 5), 2) }}€</td>
                                 </tr>
                                 <tr class="background-color text-grey body-size">
                                     <td class="ps-5 p1-5">IVA 10% (sobre 997,18 €)</td>
-                                    <td class="p1-5 bold pe-5 text-end">Dato 5</td>
+                                    <td class="p1-5 bold pe-5 text-end">
+                                        {{ number_format(substr($data['bill_summary']['iva_cost'], 0, 5), 2) }}€
+                                    </td>
                                 </tr>
                             </tbody>
+                            <thead>
+                                <tr>
+                                    <th class="background-color p3">
+
+                                    </th>
+                                    <th class="background-color p4">
+
+                                    </th>
+                                </tr>
+                            </thead>
                             <thead>
                                 <tr>
                                     <th class="background-color2 p2 ps-3 text-start text-white title-table">
@@ -397,51 +447,54 @@
                                         (con IVA)
                                     </th>
                                     <th class="background-color2 p2 text-end pe-5 text-white title-table">
-                                        1000€
+                                        {{ number_format(substr($data['bill_summary']['total_annual_cost_with_iva'], 0, 5), 2) }}€
                                     </th>
                                 </tr>
                             </thead>
                         </table>
                     </div>
-                    <div class="ms-1 border-radius background-color4 text-end p3">
-                        <p class="text-blue">Cups</p>
-                        <p class="body-size">55245</p>
-                        <p class="text-blue">Tarifa</p>
+                    <div class="border-radius background-color4 text-end p3">
+                        <p class="text-blue bold">Cups</p>
+                        <p class="body-size">ES0021000002788885RV</p>
+                        <p class="text-blue bold">Tarifa</p>
                         <p class="body-size">{{ $data['tariff'] }}</p>
-                        <p class="text-blue">Potencia contratada</p>
-                        <p class="body-size">55245</p>
-                        <p class="text-blue">Periodo análisis</p>
-                        <p class="body-size">55245</p>
-                        <p class="text-blue">Fecha informe</p>
-                        <p class="body-size">55245</p>
+                        <p class="text-blue bold">Potencia contratada</p>
+                        <p class="body-size">
+                            @foreach ($data['contracted_powers'] as $key => $value)
+                                @if ($key === 'P1')
+                                    {{ $key }}: {{ $value }}
+                                @elseif($key === 'P2')
+                                    - {{ $key }}: {{ $value }}
+                                @endif
+                            @endforeach
+                        </p>
+                        <p class="text-blue bold">Periodo análisis</p>
+                        <p class="body-size">
+                            {{ substr($data['economic_balance']['monthly'][0]['total']['date'], 0, 10) }}
+                            - {{ substr($data['economic_balance']['monthly'][0]['total']['date'], 0, 10) }}
+                        </p>
+                        <p class="text-blue bold">Fecha informe</p>
+                        <p class="body-size">{{ substr($data['economic_balance']['monthly'][0]['total']['date'], 0, 10) }}
+                        </p>
                     </div>
                 </div>
-                <ul>
-                    <li>Contrato de potencias:</li>
-                    <ul>
-                        @foreach ($data['contracted_powers'] as $key => $value)
-                            <li>{{ $key }}: {{ $value }}</li>
-                        @endforeach
-                    </ul>
-
-                    <li>Tarifa: {{ $data['tariff'] }}</li>
-                    <li>Consumo anual total: {{ $data['total_annual_consumption'] }}</li>
-                    <li>Ahorro anual total: {{ $data['total_annual_savings'] }}</li>
-
-                    <li>Períodos:</li>
-                    <ul>
-                        @foreach ($data['periods'] as $key => $period)
-                            <li>{{ $key }}</li>
-                            <ul>
-                                <li>Consumo: {{ $period['cons'] }}</li>
-                                <li>Porcentaje: {{ $period['percent'] }}</li>
-                            </ul>
-                        @endforeach
-                    </ul>
-                </ul>
             @else
                 <p>No se encontraron datos del JSON.</p>
         @endif
     </main>
+    <div class="mb-2">
+
+    </div>
+    <footer class="container-content">
+        <div class="content-footer flex-justify-center">
+            <div>
+                <h1 class="text-center title-text text-blue">PYLON</h1>
+            </div>
+            <div>
+                <p class="text-center text-size text-green">01</p>
+            </div>
+            <p class="footer_copyright">&copy; PylonData Test</p>
+        </div>
+    </footer>
     </main>
 @endsection
