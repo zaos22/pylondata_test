@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('front-page');
 });
 
-Route::get('/page-1', [JsonRenderingController::class, 'index']);
-
 Route::get('/index', [JsonRenderingController::class, 'index']);
+
+Route::get('/generar-pdf', [JsonRenderingController::class, 'pdf'])->name('generar.pdf');
 
