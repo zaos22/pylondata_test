@@ -3,24 +3,6 @@
 @section('styles')
     @parent <!-- Mantiene los estilos del layout principal -->
     <style>
-        html {
-            box-sizing: border-box;
-            font-size: 62.5%;
-            /* 10px = 1rem */
-        }
-
-        *,
-        *:before,
-        *:after {
-            box-sizing: inherit;
-        }
-
-        body {
-            font-size: 1.8rem;
-            line-height: 1;
-            background-image: url('{{ url('storage/pylon-principal.jpg') }}');
-        }
-
         h1 {
             font-family: 'Protest Guerrilla', sans-serif;
         }
@@ -256,8 +238,8 @@
             }
         }
 
-        .mb-4 {
-            margin-bottom: 4rem;
+        .mb-12 {
+            margin-bottom: 12rem;
         }
     </style>
 @endsection
@@ -289,6 +271,8 @@
         <div class=" main-padding-top">
 
         </div>
+        <div class="mb-12">
+        </div>
         <div class="container">
             <div class="box">
                 <div class="meta meta-info">
@@ -306,8 +290,7 @@
                 </div>
             </div>
         </div>
-        <div class="mb-4">
-
+        <div class="mb-12">
         </div>
     </main>
 @endsection

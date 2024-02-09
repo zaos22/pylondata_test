@@ -4,25 +4,6 @@
     @parent
     <!-- Styles -->
     <style>
-        html {
-            box-sizing: border-box;
-            font-size: 62.5%;
-            /* 10px = 1rem */
-        }
-
-        *,
-        *:before,
-        *:after {
-            box-sizing: inherit;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            font-size: 1.8rem;
-            line-height: 1;
-            background-image: url('{{ url('storage/pylon-principal.jpg') }}');
-        }
-
         .title-text {
             font-family: 'Protest Guerrilla', sans-serif;
             font-size: 5rem;

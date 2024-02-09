@@ -4,25 +4,6 @@
     @parent
     <!-- Styles -->
     <style>
-        html {
-            box-sizing: border-box;
-            font-size: 62.5%;
-            /* 10px = 1rem */
-        }
-
-        *,
-        *:before,
-        *:after {
-            box-sizing: inherit;
-        }
-
-        body {
-            font-family: 'Kanit', sans-serif;
-            font-size: 1.8rem;
-            line-height: 1;
-            background-image: url('{{ url('storage/pylon-principal.jpg') }}');
-        }
-
         .title-text {
             font-family: 'Protest Guerrilla', sans-serif;
             font-size: 5rem;
@@ -90,10 +71,6 @@
         }
 
         .main-padding-top {
-            padding-top: 5rem;
-        }
-
-        .pt {
             padding-top: 5rem;
         }
 
@@ -246,8 +223,12 @@
             margin-bottom: 5rem;
         }
 
-        .mb-10 {
-            margin-bottom: 10rem;
+        .mb-12 {
+            margin-bottom: 12.5rem;
+        }
+
+        .mb-50 {
+            margin-bottom: 30rem;
         }
 
         .ms-2 {
@@ -361,6 +342,8 @@
 
 @section('content')
     <x-header2 />
+    <div class="mb-5">
+    </div>
     <main class="page-1">
         @if (isset($data))
             <div class="between">
@@ -372,8 +355,7 @@
                 </div>
             </div>
             <main class="container-content">
-                <div class="pt">
-
+                <div class="mb-12">
                 </div>
                 <div class="between">
                     <div class="me-5 table-container">
@@ -462,7 +444,7 @@
                 <p>No se encontraron datos del JSON.</p>
         @endif
     </main>
-    <div class="mb-2">
+    <div class="mb-50">
 
     </div>
     <x-footer />

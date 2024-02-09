@@ -10,6 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
     <!-- Styles -->
+    <style>
+        html {
+            box-sizing: border-box;
+            font-size: 50%;
+            /* 10px = 1rem */
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            font-size: 1.8rem;
+            line-height: 1;
+            background-image: url('{{ url('storage/pylon-principal.jpg') }}');
+        }
+    </style>
     @yield('styles')
     <title>Test App - @yield('title')</title>
 </head>
