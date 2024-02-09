@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap" rel="stylesheet">
-    <!-- Styles -->
+@extends('layouts.app')
+@section('title', '')
+@section('styles')
+    @parent <!-- Mantiene los estilos del layout principal -->
     <style>
         html {
             box-sizing: border-box;
@@ -35,6 +28,12 @@
         .title-text {
             font-size: 5rem;
             color: white;
+        }
+
+        .navigation-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container-content {
@@ -204,8 +203,27 @@
             color: #52ffba;
         }
 
-        .circle-title{
+        .circle-title {
             font-size: 2.8rem;
+        }
+
+        .button {
+            background-color: #52ffba;
+            /* Green */
+            border: none;
+            color: black;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: transparent;
         }
 
         /* Opcional: Para evitar que las cajas se contraigan demasiado en pantallas pequeñas */
@@ -229,14 +247,25 @@
                 margin-bottom: .5rem;
             }
         }
-    </style>
-    <title>Test App</title>
-</head>
 
-<body>
+        /* Estilos para la impresión */
+        @media print {
+
+            /* Ocultar elementos que no deseas incluir en el PDF */
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+@endsection
+
+@section('content')
     <header class="header">
         <div class="container-content navigation-bar">
             <h1 class="text-center title-text">PYLON</h1>
+            <div class="no-print">
+                <button class="button" onclick="window.print()">Descargar PDF</button>
+            </div>
         </div>
     </header>
     <main class="front-page">
@@ -283,7 +312,4 @@
         </div>
 
     </main>
-
-</body>
-
-</html>
+@endsection

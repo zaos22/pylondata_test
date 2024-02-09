@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\JsonRenderingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('front-page');
 });
+
+Route::get('/page-1', [JsonRenderingController::class, 'index']);
+
+Route::get('/index', [JsonRenderingController::class, 'index']);
+
