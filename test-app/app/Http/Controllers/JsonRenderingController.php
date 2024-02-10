@@ -29,10 +29,11 @@ class JsonRenderingController extends Controller
             // Renderizar la tercera vista y devolverla
             $View3 = View::make('page-2', compact('data'))->render();
 
-            // Puedes renderizar más vistas según tus necesidades
+            // Renderizar la cuarta vista
+            $View4 = View::make('page-3', compact('data'))->render();
 
             // Devolver las vistas renderizadas
-            return $View1 . $View2 . $View3;
+            return $View1 . $View2 . $View3 . $View4;
         } else {
             // Enviar un mensaje de error si el archivo no existe
             return "El archivo JSON no existe.";
@@ -61,10 +62,11 @@ class JsonRenderingController extends Controller
             // Renderizar la tercera vista
             $View3 = View::make('page-2', compact('data'))->render();
 
-            // Puedes renderizar más vistas según tus necesidades
+            // Renderizar la cuarta vista
+            $View4 = View::make('page-3', compact('data'))->render();
 
             // Combinar las vistas renderizadas
-            $combinedViews = $View1 . $View2 . $View3;
+            $combinedViews = $View1 . $View2 . $View3 . $View4;
 
             // Generar PDF
             $pdf = new Dompdf();
