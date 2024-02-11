@@ -288,8 +288,11 @@ class JsonRenderingController extends Controller
             // Renderizar la quinta vista con la gráfica y devolverla
             $View6 = View::make('page-5', compact('data', 'chartData4', 'chartData5'))->render();
 
+            // Renderizar la última vista y devolverla
+            $View7 = View::make('end-page')->render();
+
             // Devolver las vistas renderizadas
-            return $View1 . $View2 . $View3 . $View4 . $View5 . $View6;
+            return $View1 . $View2 . $View3 . $View4 . $View5 . $View6 . $View7;
         } else {
             // Enviar un mensaje de error si el archivo no existe
             return "El archivo JSON no existe.";

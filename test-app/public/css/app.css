@@ -431,3 +431,11 @@ table {
 .height-div{
     height: 43rem;
 }
+
+.mb-pag{
+    margin-bottom: 40rem;
+}
+
+.pt-pag{
+    padding-top: 60rem;
+}
