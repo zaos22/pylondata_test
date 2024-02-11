@@ -90,11 +90,39 @@ class JsonRenderingController extends Controller
             // Renderizar la tercera vista
             $View3 = View::make('page-2', compact('data'))->render();
 
+            // Extraer los datos de los periodos y consumos
+            $periodos = [];
+            $consumos = [];
+            foreach ($data['periods'] as $key => $value) {
+                $periodos[] = $key;
+                $consumos[] = $value['cons'];
+            }
+
+            $chartData = [
+                'type' => 'doughnut',
+                'data' => [
+                    'labels' => $periodos,
+                    'datasets' => [
+                        [
+                            'label' => 'Consumo por Periodo',
+                            'data' => $consumos,
+                            'backgroundColor' => ['#2571ff', '#52ffba', '#df0eff'],
+                            'borderColor' => ['#2571ff', '#52ffba', '#df0eff'],
+                            'borderWidth' => 1
+                        ]
+                    ]
+                ]
+            ];
+            $chart = urlencode(json_encode($chartData));
+
             // Renderizar la cuarta vista
-            $View4 = View::make('page-3', compact('data'))->render();
+            $View4 = View::make('page-3', compact('data', 'chartData'))->render();
+
+            // Renderizar la quinta vista con la gráfica y devolverla
+            $View5 = View::make('page-4', compact('data', 'chartData'))->render();
 
             // Combinar las vistas renderizadas
-            $combinedViews = $View1 . $View2 . $View3 . $View4;
+            $combinedViews = $View1 . $View2 . $View3 . $View4 . $View5;
 
             // Generar PDF
             $pdf = new Dompdf();
