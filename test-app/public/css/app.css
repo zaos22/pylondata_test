@@ -423,3 +423,7 @@ table {
 .text-size {
     font-size: 2.5rem;
 }
+
+.width-div{
+    width: 33.3%;
+}

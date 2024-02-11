@@ -57,8 +57,93 @@ class JsonRenderingController extends Controller
             // Renderizar la cuarta vista con la gráfica y devolverla
             $View4 = View::make('page-3', compact('data', 'chartData'))->render();
 
+            // Extraer los datos de los dias laborales
+            $colors = [];
+            $periodos2 = [];
+            foreach ($data['averages']['workingDays'] as $key => $value) {
+                $periodos2[] = $key;
+                $periodo = $value['period'];
+
+                // Convertir $periodo a un array si no lo es
+                if (!is_array($periodo)) {
+                    $periodo = [$periodo];
+                }
+
+                if (in_array("P1", $periodo)) {
+                    $colors[] = '#2571ff';
+                }
+                if (in_array("P2", $periodo)) {
+                    $colors[] = '#52ffba';
+                }
+                if (in_array("P3", $periodo)) {
+                    $colors[] = '#df0eff';
+                }
+            }
+
+            // Si no hay ningún color agregado, establece los colores predeterminados
+            if (empty($colors)) {
+                $colors = ['#2571ff', '#52ffba', '#df0eff'];
+            }
+
+            $chartData2 = [
+                'type' => 'doughnut',
+                'data' => [
+                    'datasets' => [
+                        [
+                            'label' => 'Laborales',
+                            'data' => $periodos2,
+                            'backgroundColor' => $colors,
+                            'borderColor' => $colors,
+                            'borderWidth' => 1
+                        ]
+                    ],
+                ],
+            ];
+
+            $chart = urlencode(json_encode($chartData2));
+
+
+            // Extraer los datos de los periodos y consumos
+            $colors = ['#2571ff', '#52ffba', '#df0eff'];
+            $periodos3 = [];
+            foreach ($data['averages']['weekendDays'] as $key => $value) {
+                $periodos3[] = $key;
+                $periodo = $value['period'];
+
+                // Convertir $periodo a un array si no lo es
+                if (!is_array($periodo)) {
+                    $periodo = [$periodo];
+                }
+
+                if (in_array("P1", $periodo) && !in_array("P2", $periodo) && !in_array("P3", $periodo)) {
+                    $colors = ['#2571ff'];
+                } elseif (!in_array("P1", $periodo) && in_array("P2", $periodo) && !in_array("P3", $periodo)) {
+                    $colors = ['#52ffba'];
+                } elseif (!in_array("P1", $periodo) && !in_array("P2", $periodo) && in_array("P3", $periodo)) {
+                    $colors = ['#df0eff'];
+                } elseif (in_array("P1", $periodo) && in_array("P2", $periodo) && in_array("P3", $periodo)) {
+                    $colors = ['#2571ff', '#52ffba', '#df0eff'];
+                }
+            }
+
+            $chartData3 = [
+                'type' => 'doughnut',
+                'data' => [
+                    'datasets' => [
+                        [
+                            'label' => 'Consumo por Periodo',
+                            'data' => $periodos3,
+                            'backgroundColor' => $colors,
+                            'borderColor' => $colors,
+                            'borderWidth' => 1
+                        ]
+                    ]
+                ]
+            ];
+            $chart = urlencode(json_encode($chartData3));
+
             // Renderizar la quinta vista con la gráfica y devolverla
-            $View5 = View::make('page-4', compact('data', 'chartData'))->render();
+            $View5 = View::make('page-4', compact('data', 'chartData2', 'chartData3'))->render();
 
             // Devolver las vistas renderizadas
             return $View1 . $View2 . $View3 . $View4 . $View5;

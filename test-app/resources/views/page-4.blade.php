@@ -22,84 +22,40 @@
                 </div>
                 <div class="flex-justify-between">
                     <div class="me-2">
-                        <div>
-                            <p class="text-blue title-medium bold">Curvas de consumo medias</p>
-                            <p class="body-size">Así consumes la energía cada hora, entre semana y los
-                                fines de semana. Hemos detectado que consumes el 23%
-                                de la energía en horas P1 (el periodo caro).
-                            </p>
-                        </div>
-                        <div class="flex-justify-between">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="text-center bold pe-5" style="white-space: nowrap;" colspan="2">
-                                            <div class="background-color5">
-                                                Energía cons.
-                                            </div>
-                                        </th>
-                                        <th class="p1 background-color2 text-center bold">
-                                            P1
-                                        </th>
-                                        <th class="p1 background-color text-center bold">
-                                            P2
-                                        </th>
-                                        <th class="p1 background-color6 text-center bold">
-                                            P3
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="text-grey body-size">
-                                        <td class="text-center pe-5" colspan="2">
-                                            {{ number_format(substr($data['periods']['P1']['cons'] + $data['periods']['P2']['cons'] + $data['periods']['P3']['cons'], 0, 5), 0) }}
-                                            kWh
-                                        </td>
-                                        <td class="p2 text-center">
-                                            {{ number_format(substr($data['periods']['P1']['cons'], 0, 4)) }}
-                                        </td>
-                                        <td class="p2 text-center">
-                                            {{ number_format(substr($data['periods']['P2']['cons'], 0, 4)) }}
-                                        </td>
-                                        <td class="p2 text-center">
-                                            {{ number_format(substr($data['periods']['P3']['cons'], 0, 4)) }}
-                                        </td>
-                                    </tr>
-                                    <tr class="text-grey body-size">
-                                        <td class="text-center pe-5" colspan="2">
-                                            {{ number_format(($data['periods']['P1']['percent'] + $data['periods']['P2']['percent'] + $data['periods']['P3']['percent']) * 100, 0) }}%
-                                        </td>
-                                        <td class="text-center">
-                                            {{ number_format($data['periods']['P1']['percent'] * 100, 0) }}%
-                                        </td>
-                                        <td class="text-center">
-                                            {{ number_format($data['periods']['P2']['percent'] * 100, 0) }}%
-                                        </td>
-                                        <td class="text-center">
-                                            {{ number_format($data['periods']['P3']['percent'] * 100, 0) }}%
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="ms-2 flex-justify-center">
-                        <canvas id="myChart" width="300" height="300"></canvas>
+                        <canvas id="myChart2" width="300" height="300"></canvas>
                         <script>
                             // Obtener los datos del PHP
-                            var chartData = {!! json_encode($chartData) !!};
+                            var chartData2 = {!! json_encode($chartData2) !!};
 
                             // Crear el gráfico
-                            var ctx = document.getElementById('myChart').getContext('2d');
-                            var myChart = new Chart(ctx, chartData);
+                            var ctx = document.getElementById('myChart2').getContext('2d');
+                            var myChart = new Chart(ctx, chartData2);
                         </script>
                     </div>
+                    <div class="ms-2 flex-justify-center">
+                        <canvas id="myChart3" width="300" height="300"></canvas>
+                        <script>
+                            // Obtener los datos del PHP
+                            var chartData3 = {!! json_encode($chartData3) !!};
+
+                            // Crear el gráfico
+                            var ctx = document.getElementById('myChart3').getContext('2d');
+                            var myChart = new Chart(ctx, chartData3);
+                        </script>
+                    </div>
+                </div>
+                <div class="mb-5">
+                </div>
+                <div class="flex-justify-between">
+                    <div class="background-color2 width-div text-center"><h1 class="text-white">P1</h1></div>
+                    <div class="background-color width-div text-center"><h1 class="text-white">P2</h1></div>
+                    <div class="background-color6 width-div text-center"><h1 class="text-white">P3</h1></div>
                 </div>
             @else
                 <p>No se encontraron datos del JSON.</p>
         @endif
     </main>
-    <div class="mb-25">
+    <div class="mb-12">
 
     </div>
     <x-footer> @section('pag') 04 @endsection </x-footer>
