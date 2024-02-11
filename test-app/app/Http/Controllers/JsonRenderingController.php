@@ -103,7 +103,7 @@ class JsonRenderingController extends Controller
             $chart = urlencode(json_encode($chartData2));
 
 
-            // Extraer los datos de los periodos y consumos
+            // Extraer los datos de los dias no laborales
             $colors = ['#2571ff', '#52ffba', '#df0eff'];
             $periodos3 = [];
             foreach ($data['averages']['weekendDays'] as $key => $value) {
@@ -145,8 +145,151 @@ class JsonRenderingController extends Controller
             // Renderizar la quinta vista con la gráfica y devolverla
             $View5 = View::make('page-4', compact('data', 'chartData2', 'chartData3'))->render();
 
+            // Preparar datos
+            $labels = [];
+            $demandData = [];
+            $productionData = [];
+            $selfConsumptionData = [];
+
+            foreach ($data['averages']['summer_demand'] as $item) {
+                $labels[] = $item['period'];
+                $demandData[] = $item['demand'];
+            }
+
+            foreach ($data['averages']['summer_production'] as $item) {
+                $productionData[] = $item['production'];
+            }
+
+            foreach ($data['averages']['summer_self_consumption'] as $item) {
+                $selfConsumptionData[] = $item['direct_self_consumption'];
+            }
+
+            // Preparar datos
+            $hours = range(0, 23); // Generar horas del día
+
+            $chartData4 = [
+                'type' => 'line',
+                'data' => [
+                    'labels' => $hours, // Utilizar horas como etiquetas en el eje x
+                    'datasets' => [
+                        [
+                            'label' => 'Demanda',
+                            'data' => $demandData,
+                            'fill' => true,
+                            'borderColor' => '#2571ff',
+                            'backgroundColor' => 'rgba(37, 113, 255, 0.2)',
+                            'pointBackgroundColor' => '#2571ff',
+                            'pointBorderColor' => '#2571ff',
+                            'borderWidth' => 1
+                        ],
+                        [
+                            'label' => 'Producción',
+                            'data' => $productionData,
+                            'fill' => true,
+                            'borderColor' => '#52ffba',
+                            'backgroundColor' => 'rgba(82, 255, 186, 0.2)',
+                            'pointBackgroundColor' => '#52ffba',
+                            'pointBorderColor' => '#52ffba',
+                            'borderWidth' => 1
+                        ],
+                        [
+                            'label' => 'Autoconsumo Directo',
+                            'data' => $selfConsumptionData,
+                            'fill' => true,
+                            'borderColor' => '#df0eff',
+                            'backgroundColor' => 'rgba(223, 14, 255, 0.2)',
+                            'pointBackgroundColor' => '#df0eff',
+                            'pointBorderColor' => '#df0eff',
+                            'borderWidth' => 1
+                        ]
+                    ]
+                ],
+                'options' => [
+                    'scales' => [
+                        'y' => [
+                            'beginAtZero' => true
+                        ]
+                    ]
+                ]
+            ];
+
+            $chart = urlencode(json_encode($chartData4));
+
+            // Preparar datos
+            $labels = [];
+            $demandData = [];
+            $productionData = [];
+            $selfConsumptionData = [];
+
+            foreach ($data['averages']['winter_demand'] as $item) {
+                $labels[] = $item['period'];
+                $demandData[] = $item['demand'];
+            }
+
+            foreach ($data['averages']['winter_production'] as $item) {
+                $productionData[] = $item['production'];
+            }
+
+            foreach ($data['averages']['winter_self_consumption'] as $item) {
+                $selfConsumptionData[] = $item['direct_self_consumption'];
+            }
+
+            // Preparar datos
+            $hours = range(0, 23); // Generar horas del día
+
+            $chartData5 = [
+                'type' => 'line',
+                'data' => [
+                    'labels' => $hours, // Utilizar horas como etiquetas en el eje x
+                    'datasets' => [
+                        [
+                            'label' => 'Demanda',
+                            'data' => $demandData,
+                            'fill' => true,
+                            'borderColor' => '#2571ff',
+                            'backgroundColor' => 'rgba(37, 113, 255, 0.2)',
+                            'pointBackgroundColor' => '#2571ff',
+                            'pointBorderColor' => '#2571ff',
+                            'borderWidth' => 1
+                        ],
+                        [
+                            'label' => 'Producción',
+                            'data' => $productionData,
+                            'fill' => true,
+                            'borderColor' => '#52ffba',
+                            'backgroundColor' => 'rgba(82, 255, 186, 0.2)',
+                            'pointBackgroundColor' => '#52ffba',
+                            'pointBorderColor' => '#52ffba',
+                            'borderWidth' => 1
+                        ],
+                        [
+                            'label' => 'Autoconsumo Directo',
+                            'data' => $selfConsumptionData,
+                            'fill' => true,
+                            'borderColor' => '#df0eff',
+                            'backgroundColor' => 'rgba(223, 14, 255, 0.2)',
+                            'pointBackgroundColor' => '#df0eff',
+                            'pointBorderColor' => '#df0eff',
+                            'borderWidth' => 1
+                        ]
+                    ]
+                ],
+                'options' => [
+                    'scales' => [
+                        'y' => [
+                            'beginAtZero' => true
+                        ]
+                    ]
+                ]
+            ];
+
+            $chart = urlencode(json_encode($chartData5));
+
+            // Renderizar la quinta vista con la gráfica y devolverla
+            $View6 = View::make('page-5', compact('data', 'chartData4', 'chartData5'))->render();
+
             // Devolver las vistas renderizadas
-            return $View1 . $View2 . $View3 . $View4 . $View5;
+            return $View1 . $View2 . $View3 . $View4 . $View5 . $View6;
         } else {
             // Enviar un mensaje de error si el archivo no existe
             return "El archivo JSON no existe.";
